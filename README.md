@@ -1,7 +1,7 @@
 # FastapiDocCode
 fastapi도큐에 있는 예제 코드 다 긁어모음. 내가 보기 편하게
 
-# 20. File
+# 20. 📜 File
 
 <https://kkminseok.github.io/posts/fastapi20/>
 
@@ -51,6 +51,26 @@ async def create_upload_files(
 async def create_upload_files(files: list[UploadFile]):
     ...
 
+```
+
+# 21. 📜 Request Forms and Files
+
+```python
+# File, Form 같이 받기
+from fastapi import FastAPI, File, Form, UploadFile
+
+app = FastAPI()
+
+
+@app.post("/files/")
+async def create_file(
+    file: bytes = File(), fileb: UploadFile = File(), token: str = Form()
+):
+    return {
+        "file_size": len(file),
+        "token": token,
+        "fileb_content_type": fileb.content_type,
+    }
 ```
 
 
